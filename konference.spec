@@ -10,12 +10,12 @@ Group:		Applications/Multimedia
 URL:		http://developer.berlios.de/projects/konference/
 Source0:	http://download.berlios.de/konference/%{name}-%{version}%{_rc}.tar.gz
 # Source0-md5:	89e721b9172673b73e7eb44bf1a22522
+Patch0:		%{name}-llh.patch
 BuildRequires:	arts-devel
 BuildRequires:	ffmpeg-devel
 BuildRequires:	kdelibs-devel
 BuildRequires:	qt-devel
-# some kind of llh
-#BuildRequires:	linux-libc-headers
+BuildRequires:	linux-libc-headers
 #BuildRequires:	sip-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -33,6 +33,7 @@ Od czasu przepisania kodu, wspiera protoku³ SIP.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub admin
@@ -44,11 +45,13 @@ cp -f /usr/share/automake/config.sub admin
     --%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
     --with-qt-libraries=%{_libdir}
 
-%{__make}
+%{__make} \
+	CXXLD=%{_host_cpu}-%{_vendor}-%{_os}-g++ \
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
+	shelldesktopdir=%{_desktopdir} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -63,3 +66,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/konference.kcfg
 %{_datadir}/services/konference_part.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
+%{_desktopdir}/*.desktop
