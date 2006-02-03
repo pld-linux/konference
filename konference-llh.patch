@@ -1,0 +1,18 @@
+some hint's when trying to fix it properly:
+
+16:58:33 <@mmazur> glen, well, looks like videodev's abi simply requires 64bits.
+16:58:39 <@mmazur> glen, so no strict ansi for you.
+16:58:43 <@mmazur> glen, patch the app.
+
+--- konference-0.1/src/video/webcamv4l.h~	2006-02-03 17:00:24.000000000 +0200
++++ konference-0.1/src/video/webcamv4l.h	2006-02-03 17:00:26.000000000 +0200
+@@ -27,6 +27,9 @@
+ #include <fcntl.h>
+ 
+ #include <sys/ioctl.h>
++
++/* UGLYYYYYYYYYYY HACK FOR llh and -D__STRICT_ANSI__ */
++typedef unsigned long long __u64;
+ #include <linux/videodev.h>
+ 
+ #include "webcambase.h"
