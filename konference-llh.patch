@@ -16,3 +16,13 @@ some hint's when trying to fix it properly:
  #include <linux/videodev.h>
  
  #include "webcambase.h"
+--- konference-0.1/src/video/webcamv4l.cpp~	2005-04-22 05:26:27.000000000 +0300
++++ konference-0.1/src/video/webcamv4l.cpp	2006-02-03 17:07:29.000000000 +0200
+@@ -27,6 +27,7 @@
+ #include <unistd.h>
+ #include <sys/ioctl.h>
+ #include <fcntl.h>
++typedef unsigned long long __u64;
+ #include <linux/videodev.h>
+ 
+ #include "webcamv4l.h"
