@@ -1,13 +1,14 @@
-Summary:	Video-conferencing for KDE
-Name:		konference
 %define	_rc alpha2
-Version:	0.1
 %define	_rel 0.1
+Summary:	Video-conferencing for KDE
+Summary(pl):	Wideokonferencje dla KDE
+Name:		konference
+Version:	0.1
 Release:	0.%{_rc}.%{_rel}
 License:	GPL
 Group:		Applications/Multimedia
 URL:		http://developer.berlios.de/projects/konference/
-Source0:	http://download.berlios.de/konference/konference-0.1alpha2.tar.gz
+Source0:	http://download.berlios.de/konference/%{name}-%{version}%{_rc}.tar.gz
 # Source0-md5:	89e721b9172673b73e7eb44bf1a22522
 BuildRequires:	arts-devel
 BuildRequires:	ffmpeg-devel
@@ -24,6 +25,11 @@ for KDE.
 
 Since the rewrite (2005/01/25) it supports SIP as the signalling
 protocol. No longer H323 folks.
+
+%description -l pl
+Konference jest aplikacj± wideokonferencji dla KDE.
+
+Od czasu przepisania kodu, wspiera protoku³ SIP.
 
 %prep
 %setup -q
