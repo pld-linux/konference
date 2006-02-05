@@ -7,15 +7,16 @@ Version:	0.1
 Release:	0.%{_rc}.%{_rel}
 License:	GPL
 Group:		Applications/Multimedia
-URL:		http://developer.berlios.de/projects/konference/
 Source0:	http://download.berlios.de/konference/%{name}-%{version}%{_rc}.tar.gz
 # Source0-md5:	89e721b9172673b73e7eb44bf1a22522
 Patch0:		%{name}-llh.patch
+URL:		http://developer.berlios.de/projects/konference/
 BuildRequires:	arts-devel
 BuildRequires:	ffmpeg-devel
 BuildRequires:	kdelibs-devel
 BuildRequires:	qt-devel
 BuildRequires:	linux-libc-headers
+BuildRequires:	rpmbuild(macros) >= 1.129
 #BuildRequires:	sip-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -29,7 +30,8 @@ protocol. No longer H323 folks.
 %description -l pl
 Konference jest aplikacj± wideokonferencji dla KDE.
 
-Od czasu przepisania kodu, wspiera protoku³ SIP.
+Od czasu przepisania kodu (25.01.2005), obs³uguje SIP jako protokó³
+sygna³owy zamiast H323.
 
 %prep
 %setup -q
@@ -50,16 +52,20 @@ cp -f /usr/share/automake/config.sub admin
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
-	shelldesktopdir=%{_desktopdir} \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_htmldir=%{_kdedocdir} \
+	kde_libs_htmldir=%{_kdedocdir} \
+	shelldesktopdir=%{_desktopdir}
+
+%find_lang %{name} --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc %{_docdir}/HTML/*/%{name}
 %attr(755,root,root) %{_bindir}/%{name}
 %{_libdir}/kde3/lib*
 %{_datadir}/apps/*
