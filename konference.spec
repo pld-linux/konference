@@ -1,7 +1,7 @@
 %define	_rc alpha2
 %define	_rel 0.1
 Summary:	Video-conferencing for KDE
-Summary(pl):	Wideokonferencje dla KDE
+Summary(pl.UTF-8):   Wideokonferencje dla KDE
 Name:		konference
 Version:	0.1
 Release:	0.%{_rc}.%{_rel}
@@ -27,11 +27,11 @@ for KDE.
 Since the rewrite (2005/01/25) it supports SIP as the signalling
 protocol. No longer H323 folks.
 
-%description -l pl
-Konference jest aplikacj± wideokonferencji dla KDE.
+%description -l pl.UTF-8
+Konference jest aplikacjƒÖ wideokonferencji dla KDE.
 
-Od czasu przepisania kodu (25.01.2005), obs≥uguje SIP jako protokÛ≥
-sygna≥owy zamiast H323.
+Od czasu przepisania kodu (25.01.2005), obs≈Çuguje SIP jako protok√≥≈Ç
+sygna≈Çowy zamiast H323.
 
 %prep
 %setup -q
