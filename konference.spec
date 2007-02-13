@@ -1,7 +1,7 @@
 %define	_rc alpha2
 %define	_rel 0.1
 Summary:	Video-conferencing for KDE
-Summary(pl.UTF-8):   Wideokonferencje dla KDE
+Summary(pl.UTF-8):	Wideokonferencje dla KDE
 Name:		konference
 Version:	0.1
 Release:	0.%{_rc}.%{_rel}
