@@ -67,8 +67,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/%{name}
-%{_libdir}/kde3/lib*
-%{_datadir}/apps/*
+%{_libdir}/kde3/lib* # specify file extensions (to avoid packaging maybe unwanted .la)
+%{_datadir}/apps/* # specify excplicit dirs here (to avoid packaging kde dirs)
 %{_datadir}/config.kcfg/konference.kcfg
 %{_datadir}/services/konference_part.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
